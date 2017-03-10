@@ -12,10 +12,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Confifu.Abstractions" Version="2.0.0-preview2" />
-    <PackageReference Include="Confifu.Abstractions.DependencyInjection" Version="2.0.0-preview1" />
-    <PackageReference Include="Confifu.Abstractions.Logging" Version="1.0.0-preview1" />
-    <PackageReference Include="ServiceStack.V3.Meta" Version="1.0.0" />
+    <PackageReference Include="Confifu.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Confifu.Abstractions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Confifu.Abstractions.Logging" Version="1.0.0" />
+    <PackageReference Include="ServiceStack.V3.Meta" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
