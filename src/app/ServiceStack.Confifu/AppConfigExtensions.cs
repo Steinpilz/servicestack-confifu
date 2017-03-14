@@ -8,7 +8,7 @@ namespace ServiceStack.Confifu
 {
     public static class AppConfigExtensions
     {
-        public static IAppConfig UseServiceStack(IAppConfig appConfig, Action<ServiceStackConfig> configurator)
+        public static IAppConfig UseServiceStack(this IAppConfig appConfig, Action<ServiceStackConfig> configurator)
         {
             appConfig.RunOnce("ServiceStack", () =>
             {
