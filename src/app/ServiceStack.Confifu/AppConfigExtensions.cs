@@ -10,29 +10,17 @@ namespace ServiceStack.Confifu
     {
         public static IAppConfig UseServiceStack(this IAppConfig appConfig, Action<ServiceStackConfig> configurator)
         {
-            appConfig.RunOnce("ServiceStack", () =>
+            var config = appConfig.EnsureConfig("ServiceStack",
+                () => new ServiceStackConfig(appConfig),
+                c =>
             {
-                var newConfig = new ServiceStackConfig(appConfig);
-                newConfig.ConfigureEndpoint((appHost, endpointConfig) => Default.ConfigureAppHost(appConfig, endpointConfig));
+                c.ConfigureEndpoint((appHost, endpointConfig) => Default.ConfigureAppHost(appConfig, endpointConfig));
 
-                appConfig.AddRunner(() => new ServiceStackAppRunner(appConfig.GetServiceStackConfig()).Run());
+
+                appConfig.AddRunner(new ServiceStackAppRunner(c).Run);
             });
 
-            var config = appConfig.GetServiceStackConfig();
-
             configurator?.Invoke(config);
-
-            return appConfig;
-        }
-
-        private static ServiceStackConfig GetServiceStackConfig(this IAppConfig appConfig)
-        {
-            return appConfig["ServiceStack:Config"] as ServiceStackConfig;
-        }
-
-        private static IAppConfig SetServiceStackConfig(this IAppConfig appConfig, ServiceStackConfig config)
-        {
-            appConfig["ServiceStack:Config"] = config;
             return appConfig;
         }
     }
