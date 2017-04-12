@@ -1,4 +1,5 @@
 ﻿using Confifu.Abstractions;
+using Confifu.Abstractions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace ServiceStack.Confifu
             });
 
             configurator?.Invoke(config);
+            
             return appConfig;
         }
     }
