@@ -5,6 +5,7 @@ using ServiceStack.WebHost.Endpoints;
 using Confifu.Abstractions;
 using Confifu.Abstractions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
 
 namespace ServiceStack.Confifu
 {
@@ -17,7 +18,7 @@ namespace ServiceStack.Confifu
         /// <summary>
         /// AppHost factory
         /// </summary>
-        public Func<IRunnableAppHost> AppHost { get; set; } = () => { throw new InvalidOperationException("AppHost must be initialized"); };
+        public Func<IRunnableAppHost> AppHost { get; set; }
 
         /// <summary>
         /// EndpointHostConfig configuration action
@@ -87,6 +88,32 @@ namespace ServiceStack.Confifu
         public void WebAppHost()
         {
             AppHost = () => new AppHostWebListener(ServiceHostName, ServiceHostAssemblies.ToArray());
+        }
+
+        public void ConfigureForProduction()
+        {
+            ConfigureEndpoint((appHost, config) =>
+            {
+                var pluginsToRemove = new[]
+                    {
+                        typeof (global::ServiceStack.WebHost.Endpoints.Formats.HtmlFormat),
+                        typeof (global::ServiceStack.WebHost.Endpoints.Formats.CsvFormat),
+                        typeof (global::ServiceStack.WebHost.Endpoints.Formats.MarkdownFormat),
+                        typeof (global::ServiceStack.PredefinedRoutesFeature),
+                        typeof (global::ServiceStack.MetadataFeature)
+                    };
+
+                foreach (var pluginType in pluginsToRemove)
+                {
+                    var plugin = appHost.Plugins.FirstOrDefault(x => x.GetType() == pluginType);
+                    if (plugin != null)
+                        appHost.Plugins.Remove(plugin);
+                }
+
+                config.DebugMode = false;
+
+                config.GlobalResponseHeaders.Clear();
+            });
         }
     }
 }
