@@ -70,6 +70,14 @@ namespace ServiceStack.Confifu
             });
         }
 
+        public void HandlerFactoryPath(string handlerFactoryPath)
+        {
+            ConfigureEndpoint((appHost, config) =>
+            {
+                config.ServiceStackHandlerFactoryPath = handlerFactoryPath;
+            });
+        }
+
         public void AddPlugin<T>() where T:IPlugin
         {
             AddPlugin(() => AppConfig.GetServiceProvider().GetService<T>());

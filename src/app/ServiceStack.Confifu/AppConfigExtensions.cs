@@ -16,7 +16,7 @@ namespace ServiceStack.Confifu
                 c =>
             {
                 c.ConfigureEndpoint((appHost, endpointConfig) => Default.ConfigureAppHost(appConfig, endpointConfig));
-
+                c.HandlerFactoryPath("api");
 
                 appConfig.AddRunner(new ServiceStackAppRunner(c).Run);
             });
