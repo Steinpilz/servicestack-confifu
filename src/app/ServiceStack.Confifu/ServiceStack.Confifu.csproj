@@ -4,7 +4,7 @@
     <Description>ServiceStack v3 interface for confifu</Description>
     <VersionPrefix>2.1.2</VersionPrefix>
     <Authors>steinpilz;ivan.benko</Authors>
-    <TargetFramework>net451</TargetFramework>
+    <TargetFrameworks>net451;netstandard2.0</TargetFrameworks>
     <AssemblyName>ServiceStack.Confifu</AssemblyName>
     <PackageId>ServiceStack.Confifu</PackageId>
     <PackageTags>confifu;configuration;.net;servicestack</PackageTags>
@@ -12,9 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Confifu.Abstractions" Version="2.1.1" />
-    <PackageReference Include="Confifu.Abstractions.DependencyInjection" Version="2.1.0" />
-    <PackageReference Include="Confifu.Abstractions.Logging" Version="1.0.0" />
+    <PackageReference Include="Confifu.Abstractions" Version="2.1.2" />
+    <PackageReference Include="Confifu.Abstractions.DependencyInjection" Version="2.1.1" />
+    <PackageReference Include="Confifu.Abstractions.Logging" Version="2.0.0" />
     <PackageReference Include="ServiceStack.V3.Meta" Version="1.0.1" />
   </ItemGroup>
 
