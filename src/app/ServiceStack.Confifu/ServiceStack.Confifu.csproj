@@ -9,6 +9,7 @@
     <PackageId>ServiceStack.Confifu</PackageId>
     <PackageTags>confifu;configuration;.net;servicestack</PackageTags>
     <PackageProjectUrl>https://github.com/steinpilz/servicestack-confifu</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
